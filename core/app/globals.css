@@ -1,0 +1,52 @@
+/* Core Tailwind Engine Import */
+@import "tailwindcss";
+
+/* If your project still uses Tailwind v3 fallback, uncomment these 3 lines instead: */
+/* 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*/
+
+:root {
+  --background: #ffffff; 
+  --foreground: #09090b;
+  --color-aqua-primary: #0098a6;   
+  --color-aqua-accent: #00f2fe;    
+  --color-editorial-border: #e4e4e7;
+  --color-glass-surface: rgba(255, 255, 255, 0.75);
+}
+
+body {
+  color: var(--foreground);
+  background: 
+    radial-gradient(circle at 50% 0%, rgba(0, 242, 254, 0.03) 0%, transparent 60%),
+    var(--background);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* 
+  Pure, Standard CSS Utilities 
+  Written without @layer or @utility guards so that no compiler engine can fail them.
+*/
+.editorial-glass {
+  background: var(--color-glass-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(9, 9, 11, 0.05);
+}
+
+.editorial-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-hover:hover {
+  border-color: var(--color-aqua-primary);
+  background: rgba(0, 242, 254, 0.02);
+}
