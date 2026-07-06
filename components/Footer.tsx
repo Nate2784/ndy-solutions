@@ -10,7 +10,7 @@ export default function Footer() {
         {/* Asymmetric Core Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-zinc-200/80">
           
-          {/* Main Manifesto Block (Spans 7 Columns) - Kept left-aligned on all viewports */}
+          {/* Main Manifesto Block */}
           <div className="lg:col-span-7 space-y-6 text-left">
             <span className="font-mono text-[10px] tracking-[0.3em] text-cyan-600 uppercase font-black block">
               // DESIGN PHILOSOPHY
@@ -24,9 +24,8 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Directory & Operations Blocks (Spans 5 Columns) */}
-          {/* text-center targets mobile, sm:text-left handles alignment once it splits into columns */}
-          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4 lg:pt-0 text-center sm:text-left">
+          {/* Directory & Operations Blocks */}
+          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4 lg:pt-0 text-left">
             
             {/* Nav Matrix */}
             <div className="space-y-4">
@@ -34,26 +33,20 @@ export default function Footer() {
                 // navigate
               </h4>
               <ul className="space-y-3 font-mono text-xs uppercase tracking-wider">
-                <li>
-                  <a href="#about" className="text-zinc-950 font-bold hover:text-cyan-500 transition-colors block">
-                    The Workspace
-                  </a>
-                </li>
-                <li>
-                  <a href="#services" className="text-zinc-950 font-bold hover:text-cyan-500 transition-colors block">
-                    Capabilities
-                  </a>
-                </li>
-                <li>
-                  <a href="#solutions" className="text-zinc-950 font-bold hover:text-cyan-500 transition-colors block">
-                    Core Solutions
-                  </a>
-                </li>
-                <li>
-                  <a href="#contact" className="text-zinc-950 font-bold hover:text-cyan-500 transition-colors block">
-                    Initiate Session
-                  </a>
-                </li>
+                {[
+                  { name: "The Workspace", path: "/#about" },
+                  { name: "Capabilities", path: "/#services" },
+                  { name: "Projects", path: "/projects" },
+                  { name: "Core Solutions", path: "/#solutions" },
+                  { name: "Initiate Session", path: "/#contact" }
+                ].map((item) => (
+                  <li key={item.name} className="flex items-center gap-2 group">
+                    <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full group-hover:scale-125 transition-transform" />
+                    <a href={item.path} className="text-zinc-950 font-bold hover:text-cyan-500 transition-colors">
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -82,10 +75,10 @@ export default function Footer() {
         </div>
 
         {/* Lower Utility Horizon Row */}
-        <div className="mt-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        <div className="mt-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-left">
           
           {/* Horizontal Social Index */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-6 gap-y-2 font-mono text-[10px] tracking-widest uppercase">
+          <div className="flex flex-wrap items-start justify-start gap-x-6 gap-y-2 font-mono text-[10px] tracking-widest uppercase">
             <span className="text-zinc-400 font-bold">NETWORKS:</span>
             <a href="#" target="_blank" rel="noopener noreferrer" className="text-zinc-950 font-black hover:text-cyan-500 transition-colors">
               [ GitHub ]
