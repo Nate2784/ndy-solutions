@@ -35,7 +35,7 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-[100] border-b border-zinc-200/50 bg-linear-to-r from-white/95 via-white/90 to-cyan-500/10 backdrop-blur-md transition-all duration-300">
+    <header className="sticky top-0 z-100 border-b border-zinc-200/50 bg-linear-to-r from-white/95 via-white/90 to-cyan-500/10 backdrop-blur-md transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 h-14 md:h-16 flex items-center justify-between gap-4">
         
         {/* Logo */}
