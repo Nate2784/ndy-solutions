@@ -57,10 +57,6 @@ export default function RootLayout({
           <div className="absolute bottom-[25%] right-[5%] w-175 h-175 rounded-full bg-blue-50/40 blur-[140px] animate-drift-slow-2" />
         </div>
 
-        {/* Structural Geometric Grid Lines */}
-        <div className="absolute inset-y-0 left-6 md:left-12 lg:left-24 w-px bg-zinc-200/60 pointer-events-none z-10" />
-        <div className="absolute inset-y-0 right-6 md:right-12 lg:right-24 w-px bg-zinc-200/60 pointer-events-none z-10" />
-
         {/* Sticky Modular Header */}
         <Header />
 
