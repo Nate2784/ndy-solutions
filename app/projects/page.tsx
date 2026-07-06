@@ -58,14 +58,18 @@ export default function NdySolutionsProjects() {
             
             <div className="space-y-6 text-zinc-600 text-sm md:text-base leading-relaxed font-medium">
               <p>A premium, highly-stylized digital storefront designed to match the elite market presence of Ayana General Trading. This platform trades heavy, cluttered layouts for an ultra-clean, minimalist aesthetic that commands immediate corporate authority.</p>
-              
-               {/* Project Tech Specs Stack Grid */}
+            {/* Lead Capture Documentation */}
+                <div className="p-4 border-l-2 border-cyan-500 bg-cyan-500/5 rounded-r-lg">
+                  <h4 className="font-mono text-[10px] font-bold text-cyan-700 uppercase mb-2">// Lead Capture Pipeline</h4>
+                  <p className="text-[11px] text-zinc-600 font-medium leading-relaxed">
+                    Form submissions are routed through a server-side API endpoint, encrypting user data and triggering an automated SMTP dispatch directly to the organization's corporate inbox for immediate sales team notification.
+                  </p>
+                </div>  
+            {/* Project Tech Specs Stack Grid */}
 
           <div className="border-t border-zinc-200 pt-6 space-y-4">
 
             <span className="font-mono text-[10px] tracking-wider text-zinc-400 font-bold block uppercase">// DEPLOYMENT METRICS</span>
-
-           
 
             <div className="grid grid-cols-2 gap-4 font-mono text-[11px] uppercase">
 
@@ -81,8 +85,6 @@ export default function NdySolutionsProjects() {
 
               </div>
 
-             
-
               <div className="bg-zinc-50/80 border border-zinc-200/60 p-3 rounded-xl">
 
                 <span className="text-zinc-400 text-[9px] block mb-0.5 font-bold">CORE ENGINE</span>
@@ -90,7 +92,6 @@ export default function NdySolutionsProjects() {
                 <span className="font-extrabold text-zinc-900">NEXT.JS + TS</span>
 
               </div>
-
 
 
               <div className="bg-zinc-50/80 border border-zinc-200/60 p-3 rounded-xl">
@@ -144,7 +145,7 @@ export default function NdySolutionsProjects() {
             </div>
 
             {/* Visit Button Group */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-5 bg-white border-2 border-zinc-200/80 rounded-2xl shadow-xs mx-auto max-w-[300px] sm:max-w-none">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-5 bg-white border-2 border-zinc-200/80 rounded-2xl shadow-xs mx-auto max-w-75 sm:max-w-none">
               <div className="flex items-center gap-3 font-mono text-[10px] font-extrabold tracking-wider text-zinc-700 uppercase">
                 <ShieldCheck className="w-5 h-5 text-cyan-500" /> SSL Secured
               </div>
