@@ -1,64 +1,107 @@
+"use client";
+
 import React from 'react';
 
 export default function Footer() {
   return (
-    /* 
-      - Tied directly to your theme variable: to-[var(--color-aqua-primary)]
-      - Added a trailing /15 opacity modifier to keep the background soft and the typography sharp.
-        (Feel free to adjust or remove the /15 depending on how intense you want the color to be!)
-    */
-    <footer className="relative z-50 border-t border-zinc-200/50 bg-gradient-to-br from-white to-[var(--color-aqua-primary)]/15 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 pt-16 md:pt-24 pb-8 md:pb-12">
+    <footer className="relative z-50 border-t-2 border-zinc-950 bg-gradient-to-tr from-zinc-50 via-white to-cyan-500/10 backdrop-blur-md">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 pt-16 pb-12">
         
-        {/* Upper Layout: Two-Column Composition */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+        {/* Asymmetric Core Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-zinc-200/80">
           
-          {/* Brand Statement Column */}
-          <div className="lg:col-span-8 space-y-6">
-            <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-zinc-950 leading-none">
-              BUILDING TO LAST.<br />
-              SCALING TO LEAD.
-            </h2>
-            <div className="flex items-center gap-2 text-[10px] font-mono tracking-[0.2em] text-zinc-400 uppercase">
-              <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
-              <span>PREMIUM DESIGN & EXPONENTIAL SOFTWARE</span>
+          {/* Main Manifesto Block (Spans 7 Columns) */}
+          <div className="lg:col-span-7 space-y-6">
+            <span className="font-mono text-[10px] tracking-[0.3em] text-cyan-600 uppercase font-black block">
+              // DESIGN PHILOSOPHY
+            </span>
+            <h3 className="text-3xl md:text-5xl font-black tracking-tight text-zinc-950 uppercase leading-[1.1]">
+              ENGINEERING RESILIENT FRAMEWORKS.<br />
+              CRAFTING UNCOMPROMISING UI.
+            </h3>
+            <p className="max-w-xl text-zinc-600 text-sm leading-relaxed font-medium">
+              A specialized digital workshop delivering high-utility web architecture, data-driven systems, and visually arresting user interfaces tailored for high market performance.
+            </p>
+          </div>
+
+          {/* Directory & Operations Blocks (Spans 5 Columns) */}
+          <div className="lg:col-span-5 grid grid-cols-2 gap-8 pt-4 lg:pt-0">
+            
+            {/* Nav Matrix */}
+            <div className="space-y-4">
+              <h4 className="font-mono text-[10px] font-black tracking-widest text-zinc-400 uppercase">
+                // COMPASS
+              </h4>
+              <ul className="space-y-3 font-mono text-xs uppercase tracking-wider">
+                <li>
+                  <a href="#about" className="text-zinc-950 font-bold hover:text-cyan-500 transition-colors block">
+                    The Workspace
+                  </a>
+                </li>
+                <li>
+                  <a href="#services" className="text-zinc-950 font-bold hover:text-cyan-500 transition-colors block">
+                    Capabilities
+                  </a>
+                </li>
+                <li>
+                  <a href="#solutions" className="text-zinc-950 font-bold hover:text-cyan-500 transition-colors block">
+                    Core Solutions
+                  </a>
+                </li>
+                <li>
+                  <a href="#contact" className="text-zinc-950 font-bold hover:text-cyan-500 transition-colors block">
+                    Initiate Session
+                  </a>
+                </li>
+              </ul>
             </div>
-          </div>
 
-          {/* Directory Links Column */}
-          <div className="lg:col-span-4 font-mono text-xs tracking-widest uppercase space-y-4">
-            <h4 className="text-zinc-950 font-bold text-[11px] tracking-[0.2em]">DIRECTORY</h4>
-            <ul className="space-y-2.5 text-zinc-500">
-              <li>
-                <a href="#about" className="hover:text-zinc-950 transition-colors duration-200 flex items-center gap-1 group">
-                  <span className="opacity-0 group-hover:opacity-100 transition-all duration-200 text-zinc-300 -ml-2 group-hover:ml-0">→</span> About Us
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="hover:text-zinc-950 transition-colors duration-200 flex items-center gap-1 group">
-                  <span className="opacity-0 group-hover:opacity-100 transition-all duration-200 text-zinc-300 -ml-2 group-hover:ml-0">→</span> Our Services
-                </a>
-              </li>
-              <li>
-                <a href="#solutions" className="hover:text-zinc-950 transition-colors duration-200 flex items-center gap-1 group">
-                  <span className="opacity-0 group-hover:opacity-100 transition-all duration-200 text-zinc-300 -ml-2 group-hover:ml-0">→</span> Target Packages
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-zinc-950 transition-colors duration-200 flex items-center gap-1 group">
-                  <span className="opacity-0 group-hover:opacity-100 transition-all duration-200 text-zinc-300 -ml-2 group-hover:ml-0">→</span> Get In Touch
-                </a>
-              </li>
-            </ul>
-          </div>
+            {/* Terminal Pipeline */}
+            <div className="space-y-4">
+              <h4 className="font-mono text-[10px] font-black tracking-widest text-zinc-400 uppercase">
+                // PIPELINE
+              </h4>
+              <div className="space-y-3 font-mono text-xs tracking-wider">
+                <div className="space-y-0.5">
+                  <span className="text-[9px] text-zinc-400 block uppercase">SECURE MAIL</span>
+                  <a href="mailto:nate@company.com" className="text-zinc-950 font-bold hover:text-cyan-500 font-sans tracking-normal lowercase transition-colors block">
+                    nate@company.com
+                  </a>
+                </div>
+                <div className="space-y-0.5">
+                  <span className="text-[9px] text-zinc-400 block uppercase">NODE REGION</span>
+                  <span className="text-zinc-950 font-bold font-sans tracking-normal block">
+                    Addis Ababa // Remote
+                  </span>
+                </div>
+              </div>
+            </div>
 
+          </div>
         </div>
 
-        {/* ================= GLOBAL CENTERING BOTTOM LAYER ================= */}
-        <div className="mt-16 md:mt-24 pt-8 border-t border-zinc-200/30 text-center">
-          <p className="font-mono text-[10px] md:text-xs uppercase tracking-[0.25em] text-zinc-400">
-            © {new Date().getFullYear()} <span className="text-zinc-950 font-bold">NDY SOLUTIONS LLC</span>. All rights reserved globally.
+        {/* Lower Utility Horizon Row */}
+        <div className="mt-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          
+          {/* Horizontal Social Index */}
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[10px] tracking-widest uppercase">
+            <span className="text-zinc-400 font-bold">NETWORKS:</span>
+            <a href="#" target="_blank" rel="noopener noreferrer" className="text-zinc-950 font-black hover:text-cyan-500 transition-colors">
+              [ GitHub ]
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" className="text-zinc-950 font-black hover:text-cyan-500 transition-colors">
+              [ LinkedIn ]
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" className="text-zinc-950 font-black hover:text-cyan-500 transition-colors">
+              [ Instagram ]
+            </a>
+          </div>
+
+          {/* Legal Stamp */}
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400">
+            © {new Date().getFullYear()} <span className="text-zinc-950 font-black">NDY SOLUTIONS LLC</span>. All rights reserved globally.
           </p>
+          
         </div>
 
       </div>
