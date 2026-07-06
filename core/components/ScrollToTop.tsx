@@ -40,7 +40,7 @@ export default function ScrollToTop() {
             - Dynamically updates to match layout structural grid lines on larger screens
             - z-[100] keeps it safely floating over the footer background layer
           */
-          className="fixed bottom-6 right-6 md:right-12 lg:right-24 z-[100] p-3 rounded-full border border-zinc-200/80 bg-white/80 backdrop-blur-md text-zinc-950 shadow-lg hover:border-[var(--color-aqua-primary)] hover:bg-zinc-50 transition-all duration-300 group"
+          className="fixed bottom-6 right-6 md:right-12 lg:right-24 z-100 p-3 rounded-full border border-zinc-200/80 bg-white/80 backdrop-blur-md text-zinc-950 shadow-lg hover:border-(--color-aqua-primary) hover:bg-zinc-50 transition-all duration-300 group"
           aria-label="Scroll to top"
         >
           <ChevronUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform duration-300" />

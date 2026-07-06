@@ -57,7 +57,7 @@ export default function NdySolutionsHome() {
             y: [0, 30, -30, 0],
           }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 right-10 w-[500px] h-[500px] rounded-full bg-blue-50/30 blur-3xl"
+          className="absolute top-1/2 right-10 w-125 h-125 rounded-full bg-blue-50/30 blur-3xl"
         />
       </div>
 
@@ -91,7 +91,7 @@ export default function NdySolutionsHome() {
       <motion.span
         className={`block origin-left ${
           index === 1 
-            ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-teal-500 drop-shadow-[0_2px_10px_rgba(6,182,212,0.15)]' 
+            ? 'text-transparent bg-clip-text bg-linear-to-r from-cyan-500 to-teal-500 drop-shadow-[0_2px_10px_rgba(6,182,212,0.15)]' 
             : ''
         }`}
         variants={{
@@ -110,7 +110,7 @@ export default function NdySolutionsHome() {
 </h1>
 
     {/* Interactive Electric Edge Light (Glows on section hover) */}
-    <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-cyan-400 via-teal-400 to-transparent opacity-0 scale-y-95 group-hover/section:opacity-100 group-hover/section:scale-y-100 transition-all duration-500 origin-top hidden lg:block shadow-[0_0_15px_rgba(6,182,212,0.5)]" />
+    <div className="absolute left-0 top-0 bottom-0 w-0.75 bg-linear-to-b from-cyan-400 via-teal-400 to-transparent opacity-0 scale-y-95 group-hover/section:opacity-100 group-hover/section:scale-y-100 transition-all duration-500 origin-top hidden lg:block shadow-[0_0_15px_rgba(6,182,212,0.5)]" />
   </div>
   
   {/* Right Contextual Insight Pillar */}
@@ -218,14 +218,14 @@ export default function NdySolutionsHome() {
         className={`p-8 bg-white/80 backdrop-blur-xl border-2 border-zinc-200/60 hover:border-cyan-400 flex flex-col justify-between h-85 group relative overflow-hidden rounded-2xl transition-all duration-300 ${service.glow}`}
       >
         {/* Dynamic Holographic Radial Backglow on Hover */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${service.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0`} />
+        <div className={`absolute inset-0 bg-linear-to-br ${service.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0`} />
         
         {/* Top-Border Twin Trace Line */}
-        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-cyan-400 to-teal-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 z-10" />
+        <div className="absolute top-0 left-0 right-0 h-0.75 bg-linear-to-r from-cyan-400 to-teal-400 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 z-10" />
 
         <div className="space-y-6 relative z-10">
           {/* Neon Active Icon Block */}
-          <div className="w-12 h-12 rounded-xl bg-cyan-50 border-2 border-cyan-200 flex items-center justify-center text-cyan-600 group-hover:bg-gradient-to-br group-hover:from-cyan-400 group-hover:to-teal-500 group-hover:text-white group-hover:border-transparent transition-all duration-300 shadow-sm shadow-cyan-100">
+          <div className="w-12 h-12 rounded-xl bg-cyan-50 border-2 border-cyan-200 flex items-center justify-center text-cyan-600 group-hover:bg-linear-to-br group-hover:from-cyan-400 group-hover:to-teal-500 group-hover:text-white group-hover:border-transparent transition-all duration-300 shadow-sm shadow-cyan-100">
             {service.icon}
           </div>
           
@@ -284,7 +284,7 @@ export default function NdySolutionsHome() {
           </div>
         </div>
 
-        <div className="min-h-[280px] relative">
+        <div className="min-h-70 relative">
           <AnimatePresence mode="wait">
             {activeTab === 'small' ? (
               <motion.div

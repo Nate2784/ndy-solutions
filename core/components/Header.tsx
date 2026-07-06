@@ -14,15 +14,15 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-[100] border-b border-zinc-200/50 bg-gradient-to-r from-white/95 via-white/90 to-cyan-500/10 backdrop-blur-md transition-all duration-300">
+    <header className="sticky top-0 z-100 border-b border-zinc-200/50 bg-linear-to-r from-white/95 via-white/90 to-cyan-500/10 backdrop-blur-md transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 h-14 md:h-16 flex items-center justify-between gap-4">
         
         {/* ================= COLUMN 1: TYPOGRAPHIC LOGO ================= */}
-        <a href="/" className="flex flex-col items-start leading-none group select-none relative z-50 flex-shrink-0">
+        <a href="/" className="flex flex-col items-start leading-none group select-none relative z-50 shrink-0">
           <span className="text-lg md:text-xl font-black tracking-tighter text-cyan-500 group-hover:text-cyan-600 transition-colors">
             NDY
           </span>
-          <span className="text-[6px] md:text-[7px] font-mono tracking-[0.5em] text-zinc-950 font-black uppercase mt-1 pl-[1px] transition-colors">
+          <span className="text-[6px] md:text-[7px] font-mono tracking-[0.5em] text-zinc-950 font-black uppercase mt-1 pl-px transition-colors">
             SOLUTIONS
           </span>
         </a>
@@ -42,7 +42,7 @@ export default function Header() {
         </nav>
 
         {/* ================= COLUMN 3: STANDOUT CTA BUTTON ================= */}
-        <div className="hidden md:flex items-center gap-4 flex-shrink-0">
+        <div className="hidden md:flex items-center gap-4 shrink-0">
           <a 
             href="#contact" 
             className="group flex items-center justify-center gap-1.5 px-4 py-1.5 bg-zinc-950 text-white font-mono text-[10px] uppercase tracking-widest rounded-full hover:bg-cyan-500 hover:text-zinc-950 shadow-sm hover:shadow-[0_4px_15px_rgba(6,182,212,0.25)] transition-all duration-300 active:scale-[0.98]"
@@ -65,7 +65,7 @@ export default function Header() {
 
       {/* ================= MOBILE EXPANDED PANEL ================= */}
       {isMenuOpen && (
-        <div className="absolute top-full mt-2 left-4 right-4 bg-gradient-to-r from-white/95 via-white/90 to-cyan-500/10 backdrop-blur-md border border-zinc-200/80 shadow-2xl md:hidden z-[100] rounded-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300 ease-out">
+        <div className="absolute top-full mt-2 left-4 right-4 bg-linear-to-r from-white/95 via-white/90 to-cyan-500/10 backdrop-blur-md border border-zinc-200/80 shadow-2xl md:hidden z-100 rounded-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300 ease-out">
           <nav className="flex flex-col p-6 space-y-3 font-mono text-xs uppercase tracking-widest text-center items-center">
             {navItems.map((item) => (
               <a 
