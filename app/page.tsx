@@ -1,31 +1,19 @@
 "use client";
 
 import React, { useState } from 'react';
-// FIX: Imported the strict Variants type from framer-motion
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { Send, Layout, Laptop, Shield, Check, ArrowUpRight } from 'lucide-react';
+import { Layout, Laptop, Shield, Check, Mail, MessageCircle, Share2 } from 'lucide-react';
 import PricingSection from '@/components/PricingSection';
 import ContactForm from '@/components/ContactForm';
 
 export default function NdySolutionsHome() {
   const [activeTab, setActiveTab] = useState<'small' | 'large'>('small');
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', businessSize: 'small', message: '' });
 
   const pricingData = [
     { title: "Profile Page", price: "$89.99", unit: "Flat Rate", desc: "Single page professional company profile." },
     { title: "Multi-Page", price: "$67.99", unit: "Per Page", desc: "Scalable websites with custom sub-pages." },
     { title: "Software", price: "Custom", unit: "Estimate", desc: "Cloud tools & complex ecosystems." },
   ];
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-  };
 
   // FIX: Explicitly typed as Variants to satisfy the AnimationGeneratorType requirement
   const scrollReveal: Variants = {
@@ -207,7 +195,7 @@ export default function NdySolutionsHome() {
       {
         icon: <Laptop className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />,
         title: "Custom Business Software",
-        desc: "We build easy-to-use software dashboards, financial tracking apps, and online business systems tailored exactly around how your team operates day-to-day.",
+        desc: "We build easy-to-use software dashboards and online business systems tailored exactly around how your team operates day-to-day.",
         pill: "BUILT FOR YOUR NEEDS",
         glow: "group-hover:shadow-[0_0_30px_rgba(14,165,233,0.25)]",
         bgGradient: "from-sky-400/20 via-cyan-400/5 to-transparent"
@@ -378,32 +366,136 @@ export default function NdySolutionsHome() {
         {/* Core Architecture Matrix Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
-          {/* Left Column: Direct Action Narrative */}
-          <div className="lg:col-span-5 space-y-6 flex flex-col justify-between py-2">
-            <div className="space-y-4">
-              <h3 className="text-xl font-black tracking-tight text-zinc-950 uppercase">
-                Ready to elevate your digital infrastructure?
+         {/* Left Column: Contact Information */}
+        <div className="lg:col-span-5 flex flex-col justify-between space-y-10 py-2">
+
+          <div className="space-y-5">
+            <div>
+              <span className="font-mono text-xs tracking-[0.35em] text-cyan-600 uppercase font-black block mb-2">
+                // DIRECT CONTACT
+              </span>
+
+              <h3 className="text-2xl font-black tracking-tight text-zinc-950 uppercase leading-tight">
+                Let's Build Something Exceptional
               </h3>
-              <p className="text-zinc-600 text-sm md:text-base leading-relaxed font-medium">
-                Whether you need a high-utility company showcase optimized for traffic and monetization, or a secure full-stack operational portal, let’s map out a blueprint that fits your project vision flawlessly.
-              </p>
             </div>
 
-            {/* Quick Context Chips */}
-            <div className="space-y-3 pt-6 border-t border-zinc-200/80">
-              <div className="flex items-center gap-3 font-mono text-[10px] tracking-wider uppercase text-zinc-600">
-                <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
-                SYSTEM AVAILABILITY: ACTIVE FOR Q3
-              </div>
-              <div className="flex items-center gap-3 font-mono text-[10px] tracking-wider uppercase text-zinc-600">
-                <span className="w-2 h-2 rounded-full bg-teal-500" />
-                PRIMARY CORE: ADDIS ABABA & GLOBAL
-              </div>
-            </div>
+            <p className="text-zinc-600 text-sm md:text-base leading-relaxed">
+              Every successful digital product begins with a conversation.
+              Whether you're launching a new business, modernizing an existing
+              platform, or developing a custom web application, NDY Tech
+              Solutions delivers scalable, secure, and high-performance
+              solutions tailored to your goals.
+            </p>
+
+            <p className="text-zinc-600 text-sm leading-relaxed">
+              Tell us about your project and we'll respond with the best
+              approach, estimated timeline, and next steps.
+            </p>
           </div>
 
+          {/* Contact Cards */}
+          <div className="space-y-4">
+
+            {/* Email */}
+            <div className="flex items-start gap-4 p-4 border border-zinc-200 rounded-xl bg-white">
+              <div className="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center">
+                <Mail className="w-5 h-5 text-cyan-600" />
+              </div>
+
+              <div>
+                <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-zinc-500">
+                  Email
+                </p>
+
+                <a
+                  href="mailto:ndytechsolutions@gmail.com"
+                  className="font-semibold text-zinc-900 hover:text-cyan-600 transition-colors"
+                >
+                  ndytechsolutions@gmail.com
+                </a>
+              </div>
+            </div>
+
+            {/* WhatsApp */} 
+            <div className="flex items-start gap-4 p-4 border border-zinc-200 rounded-xl bg-white">
+              <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                <MessageCircle className="w-5 h-5 text-emerald-600" />
+              </div>
+
+              <div>
+                <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-zinc-500">
+                  WhatsApp
+                </p>
+
+                <a
+                  href="https://wa.me/251927843540"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-zinc-900 hover:text-emerald-600 transition-colors"
+                >
+                  Chat with us instantly
+                </a>
+              </div>
+            </div>
+
+            {/* Socials */}
+            <div className="flex items-start gap-4 p-4 border border-zinc-200 rounded-xl bg-white">
+              <div className="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+                <Share2 className="w-5 h-5 text-indigo-600" />
+              </div>
+
+              <div>
+                <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-zinc-500">
+                  Follow NDY Tech Solutions
+                </p>
+
+                <div className="flex gap-4 mt-2 text-sm font-semibold">
+                  <a href="#" className="hover:text-cyan-600 transition-colors">
+                    LinkedIn
+                  </a>
+
+                  <a href="#" className="hover:text-cyan-600 transition-colors">
+                    Facebook
+                  </a>
+
+                  <a href="#" className="hover:text-cyan-600 transition-colors">
+                    Instagram
+                  </a>
+
+                  <a href="#" className="hover:text-cyan-600 transition-colors">
+                    X
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Bottom Status */}
+          <div className="pt-6 border-t border-zinc-200 space-y-3">
+
+            <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-wider text-zinc-600">
+              <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
+              Accepting New Projects
+            </div>
+
+            <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-wider text-zinc-600">
+              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Based in Addis Ababa • Working Worldwide
+            </div>
+
+            <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-wider text-zinc-600">
+              <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+              Average Response Time: Under 24 Hours
+            </div>
+
+          </div>
+
+        </div>
+
           {/* Right Column: High-Pop Form Shell */}
-<div className="lg:col-span-7 backdrop-blur-md  transition-all duration-300">
+<div className="lg:col-span-7 backdrop-blur-md hover:border transition-all duration-300">
   <ContactForm />
 </div>
 

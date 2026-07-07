@@ -7,9 +7,9 @@ export default function PricingSection() {
   const [activeTab, setActiveTab] = useState(0);
 
   const pricingData = [
-    { title: "Profile", price: "$89.99", unit: "Flat Rate", desc: "Single page professional company profile." },
+    { title: "Profile", price: "$94.99", unit: "Flat Rate", desc: "Single page professional company profile." },
     { title: "Multi-Page", price: "$67.99", unit: "Per Page", desc: "Scalable websites with custom sub-pages." },
-    { title: "Software", price: "Custom", unit: "Estimate", desc: "Cloud tools & complex ecosystems." },
+    { title: "WEb-apps", price: "Custom", unit: "Estimate", desc: "Multi functional websites, Cloud tools & complex ecosystems." },
   ];
 
   return (
@@ -42,7 +42,7 @@ export default function PricingSection() {
             </p>
           </div>
 
-          <motion.div className="relative p-1 rounded-[2rem] bg-linear-to-br from-cyan-400 to-teal-500 shadow-2xl">
+          <motion.div className="relative p-1 rounded-4xl bg-linear-to-br from-cyan-400 to-teal-500 shadow-2xl">
             <div className="bg-white p-8 md:p-10 rounded-[1.8rem] flex flex-col items-center text-center space-y-6">
               <div className="flex bg-zinc-100 p-1 rounded-xl w-full">
                 {pricingData.map((item, idx) => (
