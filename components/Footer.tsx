@@ -59,7 +59,7 @@ export default function Footer() {
                 <div className="space-y-0.5">
                   <span className="text-[9px] text-zinc-400 block uppercase">SECURE MAIL</span>
                   <a href="mailto:nate@company.com" className="text-zinc-950 font-bold hover:text-cyan-500 font-sans tracking-normal lowercase transition-colors block">
-                    nate@company.com
+                    Ndytechsolutions@gmail.com
                   </a>
                 </div>
                 <div className="space-y-0.5">
@@ -93,7 +93,7 @@ export default function Footer() {
 
           {/* Legal Stamp */}
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400">
-            © {new Date().getFullYear()} <span className="text-zinc-950 font-black">NDY SOLUTIONS LLC</span>. All rights reserved globally.
+            © {new Date().getFullYear()} <span className="text-zinc-950 font-black">NDY TECH SOLUTIONS LLC</span>. All rights reserved globally.
           </p>
           
         </div>

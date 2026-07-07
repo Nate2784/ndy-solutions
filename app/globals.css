@@ -20,6 +20,7 @@
 }
 
 body {
+  top: 0px !important;
   color: var(--foreground);
   background: 
     radial-gradient(circle at 50% 0%, rgba(0, 242, 254, 0.03) 0%, transparent 60%),
@@ -54,4 +55,9 @@ html {
 .editorial-hover:hover {
   border-color: var(--color-aqua-primary);
   background: rgba(0, 242, 254, 0.02);
+}
+
+.goog-te-banner-frame,
+.skiptranslate {
+  display: none !important;
 }

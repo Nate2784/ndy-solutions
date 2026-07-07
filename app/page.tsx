@@ -4,11 +4,19 @@ import React, { useState } from 'react';
 // FIX: Imported the strict Variants type from framer-motion
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Send, Layout, Laptop, Shield, Check, ArrowUpRight } from 'lucide-react';
+import PricingSection from '@/components/PricingSection';
+import ContactForm from '@/components/ContactForm';
 
 export default function NdySolutionsHome() {
   const [activeTab, setActiveTab] = useState<'small' | 'large'>('small');
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', businessSize: 'small', message: '' });
+
+  const pricingData = [
+    { title: "Profile Page", price: "$89.99", unit: "Flat Rate", desc: "Single page professional company profile." },
+    { title: "Multi-Page", price: "$67.99", unit: "Per Page", desc: "Scalable websites with custom sub-pages." },
+    { title: "Software", price: "Custom", unit: "Estimate", desc: "Cloud tools & complex ecosystems." },
+  ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -155,7 +163,10 @@ export default function NdySolutionsHome() {
 
 </motion.section>
 
-{/* ================= SECTION 2: WHAT WE DO (HIGH-POP ELECTRIC AQUA MATRIX) ================= */}
+{/* ================= SECTION 2: ANIMATED VALUE PROPOSITION ================= */}
+<PricingSection />
+
+{/* ================= SECTION 3: WHAT WE DO (HIGH-POP ELECTRIC AQUA MATRIX) ================= */}
 <motion.section 
   initial="hidden"
   whileInView="visible"
@@ -187,9 +198,9 @@ export default function NdySolutionsHome() {
     {[
       {
         icon: <Layout className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />,
-        title: "Stunning Web Design",
-        desc: "We design elegant, modern, and pixel-perfect corporate websites. Every layout is optimized to look incredible on mobile devices and attract premium customers effortlessly.",
-        pill: "FAST & RESPONSIVE",
+        title: "Design & Full Deployment", // Updated Title
+        desc: "We design, build, and deploy elegant corporate websites. We handle the entire technical journey—from your first layout to pushing your site live to the cloud.",
+        pill: "FROM DESIGN TO LIVE", // Updated Pill
         glow: "group-hover:shadow-[0_0_30px_rgba(6,182,212,0.25)]",
         bgGradient: "from-cyan-400/20 via-emerald-400/5 to-transparent"
       },
@@ -210,6 +221,7 @@ export default function NdySolutionsHome() {
         bgGradient: "from-teal-400/20 via-cyan-400/5 to-transparent"
       }
     ].map((service, idx) => (
+       
       <motion.div 
         key={idx}
         variants={scrollReveal}
@@ -249,7 +261,7 @@ export default function NdySolutionsHome() {
   </div>
 </motion.section>
 
-{/* ================= SECTION 3: SOLUTIONS WE PROVIDE ================= */}
+{/* ================= SECTION 4: SOLUTIONS WE PROVIDE ================= */}
       <motion.section 
         initial="hidden"
         whileInView="visible"
@@ -391,58 +403,9 @@ export default function NdySolutionsHome() {
           </div>
 
           {/* Right Column: High-Pop Form Shell */}
-          <div className="lg:col-span-7 bg-white/60 backdrop-blur-md p-8 rounded-2xl border-2 border-zinc-200/80 hover:border-cyan-400/50 shadow-sm transition-all duration-300">
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              
-              {/* Dual Column Inputs */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="font-mono text-[10px] font-black uppercase tracking-wider text-zinc-700 block">
-                    Your Name
-                  </label>
-                  <input 
-                    type="text" 
-                    placeholder="Natnael Dagnachew"
-                    className="w-full bg-white px-4 py-3 border-2 border-zinc-200 rounded-xl font-medium text-sm text-zinc-950 placeholder:text-zinc-400/80 focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_20px_rgba(6,182,212,0.12)] transition-all duration-300"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="font-mono text-[10px] font-black uppercase tracking-wider text-zinc-700 block">
-                    Email Address
-                  </label>
-                  <input 
-                    type="email" 
-                    placeholder="nate@company.com"
-                    className="w-full bg-white px-4 py-3 border-2 border-zinc-200 rounded-xl font-medium text-sm text-zinc-950 placeholder:text-zinc-400/80 focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_20px_rgba(6,182,212,0.12)] transition-all duration-300"
-                  />
-                </div>
-              </div>
-
-              {/* Message Block */}
-              <div className="space-y-2">
-                <label className="font-mono text-[10px] font-black uppercase tracking-wider text-zinc-700 block">
-                  Project Blueprint & Details
-                </label>
-                <textarea 
-                  rows={4}
-                  placeholder="TELL US ABOUT THE PLATFORM OR SITE YOU WANT TO ARCHITECT..."
-                  className="w-full bg-white px-4 py-3 border-2 border-zinc-200 rounded-xl font-medium text-sm text-zinc-950 placeholder:text-zinc-400/80 focus:outline-none focus:border-cyan-500 focus:shadow-[0_0_20px_rgba(6,182,212,0.12)] transition-all duration-300 resize-none uppercase"
-                />
-              </div>
-
-              {/* High-Pop Form Action Dispatcher */}
-              <div className="pt-2">
-                <button 
-                  type="submit"
-                  className="w-full md:w-auto px-8 py-3.5 bg-zinc-950 hover:bg-cyan-500 text-white hover:text-zinc-950 font-mono text-xs font-black tracking-widest uppercase rounded-xl shadow-md hover:shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all duration-300 flex items-center justify-center gap-2 group"
-                >
-                  DISPATCH MESSAGE 
-                  <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </button>
-              </div>
-
-            </form>
-          </div>
+<div className="lg:col-span-7 backdrop-blur-md  transition-all duration-300">
+  <ContactForm />
+</div>
 
         </div>
       </motion.section>

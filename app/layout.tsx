@@ -5,6 +5,7 @@ import Footer from "@/components/Footer"; // Imported Component
 import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
