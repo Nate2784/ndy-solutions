@@ -2,7 +2,18 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, ShieldCheck, Zap, Globe, Sparkles, Play, Power, Mail, Database } from 'lucide-react';
+import { ArrowUpRight, ShieldCheck, Zap, Globe, Sparkles, Play, Power } from 'lucide-react';
+
+// OPTIMIZATION: Moved variants outside to prevent recreation on every re-render
+const scrollReveal: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 50, damping: 18, mass: 0.8 } }
+};
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+};
 
 export default function NdySolutionsProjects() {
   const [isInteractive, setIsInteractive] = useState(false);
@@ -11,27 +22,25 @@ export default function NdySolutionsProjects() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
+        // Freeze iframe if scrolled out of view to save memory
         if (!entry.isIntersecting) setIsInteractive(false);
       },
       { threshold: 0.2 }
     );
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
+    
+    const currentRef = containerRef.current;
+    if (currentRef) observer.observe(currentRef);
+    
+    return () => {
+      if (currentRef) observer.unobserve(currentRef);
+      observer.disconnect();
+    };
   }, []);
-
-  const scrollReveal: Variants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 50, damping: 18, mass: 0.8 } }
-  };
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
-  };
 
   return (
     <div className="relative py-12 md:py-20 overflow-hidden min-h-screen bg-white selection:bg-cyan-500 selection:text-white" ref={containerRef}>
       
+      {/* Background Decor */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-cyan-50/10 blur-3xl" />
         <div className="absolute bottom-1/3 left-10 w-125 h-125 rounded-full bg-zinc-100/40 blur-3xl" />
@@ -58,68 +67,42 @@ export default function NdySolutionsProjects() {
             
             <div className="space-y-6 text-zinc-600 text-sm md:text-base leading-relaxed font-medium">
               <p>A premium, highly-stylized digital storefront designed to match the elite market presence of Ayana General Trading. This platform trades heavy, cluttered layouts for an ultra-clean, minimalist aesthetic that commands immediate corporate authority.</p>
-            {/* Lead Capture Documentation */}
-                <div className="p-4 border-l-2 border-cyan-500 bg-cyan-500/5 rounded-r-lg">
-                  <h4 className="font-mono text-[10px] font-bold text-cyan-700 uppercase mb-2">// Lead Capture Pipeline</h4>
-                  <p className="text-[11px] text-zinc-600 font-medium leading-relaxed">
-                    Form submissions are routed through a server-side API endpoint, encrypting user data and triggering an automated SMTP dispatch directly to the organization's corporate inbox for immediate sales team notification.
-                  </p>
-                </div>  
-            {/* Project Tech Specs Stack Grid */}
-
-          <div className="border-t border-zinc-200 pt-6 space-y-4">
-
-            <span className="font-mono text-[10px] tracking-wider text-zinc-400 font-bold block uppercase">// DEPLOYMENT METRICS</span>
-
-            <div className="grid grid-cols-2 gap-4 font-mono text-[11px] uppercase">
-
-              <div className="bg-zinc-50/80 border border-zinc-200/60 p-3 rounded-xl">
-
-                <span className="text-zinc-400 text-[9px] block mb-0.5 font-bold">INFRASTRUCTURE</span>
-
-                <span className="font-extrabold text-zinc-900 flex items-center gap-1.5">
-
-                  <Globe className="w-3.5 h-3.5 text-zinc-900" /> VERCEL EDGE
-
-                </span>
-
+              
+              {/* Lead Capture Documentation */}
+              <div className="p-4 border-l-2 border-cyan-500 bg-cyan-500/5 rounded-r-lg">
+                <h4 className="font-mono text-[10px] font-bold text-cyan-700 uppercase mb-2">// Lead Capture Pipeline</h4>
+                <p className="text-[11px] text-zinc-600 font-medium leading-relaxed">
+                  Form submissions are routed through a server-side API endpoint, encrypting user data and triggering an automated SMTP dispatch directly to the organization's corporate inbox for immediate sales team notification.
+                </p>
+              </div>  
+              
+              {/* Project Tech Specs Stack Grid */}
+              <div className="border-t border-zinc-200 pt-6 space-y-4">
+                <span className="font-mono text-[10px] tracking-wider text-zinc-400 font-bold block uppercase">// DEPLOYMENT METRICS</span>
+                <div className="grid grid-cols-2 gap-4 font-mono text-[11px] uppercase">
+                  <div className="bg-zinc-50/80 border border-zinc-200/60 p-3 rounded-xl">
+                    <span className="text-zinc-400 text-[9px] block mb-0.5 font-bold">INFRASTRUCTURE</span>
+                    <span className="font-extrabold text-zinc-900 flex items-center gap-1.5">
+                      <Globe className="w-3.5 h-3.5 text-zinc-900" /> VERCEL EDGE
+                    </span>
+                  </div>
+                  <div className="bg-zinc-50/80 border border-zinc-200/60 p-3 rounded-xl">
+                    <span className="text-zinc-400 text-[9px] block mb-0.5 font-bold">CORE ENGINE</span>
+                    <span className="font-extrabold text-zinc-900">NEXT.JS + TS</span>
+                  </div>
+                  <div className="bg-zinc-50/80 border border-zinc-200/60 p-3 rounded-xl">
+                    <span className="text-zinc-400 text-[9px] block mb-0.5 font-bold">STYLING MATRIX</span>
+                    <span className="font-extrabold text-zinc-900">TAILWIND CSS</span>
+                  </div>
+                  <div className="bg-zinc-50/80 border border-zinc-200/60 p-3 rounded-xl">
+                    <span className="text-zinc-400 text-[9px] block mb-0.5 font-bold">CORE PERFORMANCE</span>
+                    <span className="font-extrabold text-emerald-600 flex items-center gap-1">
+                      <Zap className="w-3.5 h-3.5 fill-emerald-500 text-transparent" /> 100% LIGHTHOUSE
+                    </span>
+                  </div>
+                </div>
               </div>
-
-              <div className="bg-zinc-50/80 border border-zinc-200/60 p-3 rounded-xl">
-
-                <span className="text-zinc-400 text-[9px] block mb-0.5 font-bold">CORE ENGINE</span>
-
-                <span className="font-extrabold text-zinc-900">NEXT.JS + TS</span>
-
-              </div>
-
-
-              <div className="bg-zinc-50/80 border border-zinc-200/60 p-3 rounded-xl">
-
-                <span className="text-zinc-400 text-[9px] block mb-0.5 font-bold">STYLING MATRIX</span>
-
-                <span className="font-extrabold text-zinc-900">TAILWIND CSS</span>
-
-              </div>
-
-
-
-              <div className="bg-zinc-50/80 border border-zinc-200/60 p-3 rounded-xl">
-
-                <span className="text-zinc-400 text-[9px] block mb-0.5 font-bold">CORE PERFORMANCE</span>
-
-                <span className="font-extrabold text-emerald-600 flex items-center gap-1">
-
-                  <Zap className="w-3.5 h-3.5 fill-emerald-500 text-transparent" /> 100% LIGHTHOUSE
-
-                </span>
-
-              </div>
-
             </div>
-
-          </div>
-          </div>
           </motion.div>
 
           {/* RIGHT: Phone Frame + Button Group */}
@@ -129,14 +112,21 @@ export default function NdySolutionsProjects() {
                 {!isInteractive ? (
                   <motion.div key="static" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 flex flex-col items-center justify-center bg-zinc-900 p-6 text-center">
                     <Globe className="w-12 h-12 text-zinc-700 mb-4" />
-                    <button onClick={() => setIsInteractive(true)} className="flex items-center gap-2 px-6 py-3 bg-white text-zinc-950 font-black text-[10px] tracking-widest uppercase rounded-full hover:bg-cyan-400 transition-all">
+                    <button onClick={() => setIsInteractive(true)} className="flex items-center gap-2 px-6 py-3 bg-white text-zinc-950 font-black text-[10px] tracking-widest uppercase rounded-full hover:bg-cyan-400 transition-all cursor-pointer">
                       <Play className="w-3 h-3 fill-current" /> Start Interaction
                     </button>
                   </motion.div>
                 ) : (
-                  <motion.div key="live" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute inset-0 w-full h-full">
-                    <iframe src="https://ayana-eight.vercel.app/" className="w-full h-full border-none" />
-                    <button onClick={() => setIsInteractive(false)} className="absolute bottom-4 right-4 z-20 flex items-center gap-2 px-3 py-1.5 bg-red-500/90 text-white rounded-full font-mono text-[9px] shadow-lg">
+                  <motion.div key="live" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute inset-0 w-full h-full bg-white">
+                    {/* OPTIMIZATION: Added loading="lazy", title, and sandbox to prevent memory leaks and isolate processes */}
+                    <iframe 
+                      src="https://ayana-eight.vercel.app/" 
+                      className="w-full h-full border-none"
+                      loading="lazy"
+                      title="Ayana General Trading Live Preview"
+                      sandbox="allow-scripts allow-same-origin"
+                    />
+                    <button onClick={() => setIsInteractive(false)} className="absolute bottom-4 right-4 z-20 flex items-center gap-2 px-3 py-1.5 bg-red-500/90 text-white rounded-full font-mono text-[9px] shadow-lg cursor-pointer hover:bg-red-600 transition-colors">
                       <Power className="w-3 h-3" /> FREEZE
                     </button>
                   </motion.div>

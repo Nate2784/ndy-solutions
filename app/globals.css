@@ -1,12 +1,14 @@
 /* Core Tailwind Engine Import */
 @import "tailwindcss";
 
-/* If your project still uses Tailwind v3 fallback, uncomment these 3 lines instead: */
-/* 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* TAILWIND v4 THEME CONFIGURATION 
+  This fixes the browser preload warnings by explicitly telling Tailwind 
+  to use your Next.js Geist CSS variables for the default sans and mono classes.
 */
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
 
 :root {
   --background: #ffffff; 
@@ -22,17 +24,20 @@ body {
   background: 
     radial-gradient(circle at 50% 0%, rgba(0, 242, 254, 0.03) 0%, transparent 60%),
     var(--background);
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  /* Notice we removed the manual font-family here, because Tailwind's 'font-sans' class in your layout handles it now */
   overflow-x: hidden;
   letter-spacing: -0.01em;
 }
 
+/* Since you added className="scroll-smooth" and data-scroll-behavior="smooth" 
+  in your layout.tsx, you technically don't need this block anymore, but keeping 
+  it is perfectly safe as a fallback.
+*/
 html {
   scroll-behavior: smooth;
 }
 
-/* 
-  Pure, Standard CSS Utilities 
+/* Pure, Standard CSS Utilities 
   Written without @layer or @utility guards so that no compiler engine can fail them.
 */
 .editorial-glass {
