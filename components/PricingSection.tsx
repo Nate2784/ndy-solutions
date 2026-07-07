@@ -24,7 +24,7 @@ export default function PricingSection() {
           <div className="space-y-6">
             <h2 className="text-5xl md:text-7xl font-black text-zinc-950 leading-[0.9] tracking-tighter uppercase">
                 {/* Primary Hero Statement */}
-                <span className="block mb-2">WE BUILD</span>
+                <span className="block mb-2">BUILDING</span>
                 
                 {/* The Visual Hook */}
                 <span className="block text-transparent bg-clip-text bg-linear-to-r from-cyan-500 via-teal-400 to-cyan-600 mb-6">
