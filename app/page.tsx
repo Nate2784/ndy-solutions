@@ -495,7 +495,7 @@ export default function NdySolutionsHome() {
         </div>
 
           {/* Right Column: High-Pop Form Shell */}
-<div className="lg:col-span-7 backdrop-blur-md hover:border transition-all duration-300">
+<div className="lg:col-span-7 backdrop-blur-md transition-all duration-300">
   <ContactForm />
 </div>
 
