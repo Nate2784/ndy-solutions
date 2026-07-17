@@ -8,7 +8,7 @@ export default function PricingSection() {
 
   const pricingData = [
     { title: "Profile", price: "$94.99", unit: "Flat Rate", desc: "Single page professional company profile." },
-    { title: "Multi-Page", price: "$67.99", unit: "Per Page", desc: "Scalable websites with custom sub-pages." },
+    { title: "Multi-Page", price: "$49.99", unit: "Per Page", desc: "Scalable websites with custom sub-pages." },
     { title: "Software", price: "Custom", unit: "Estimate", desc: "ERP sys, Multi functional websites, Cloud tools & complex ecosystems." },
   ];
 

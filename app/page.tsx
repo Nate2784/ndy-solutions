@@ -441,7 +441,7 @@ export default function NdySolutionsHome() {
             </div>
 
             {/* Socials */}
-            <div className="flex items-start gap-4 p-4 border border-zinc-200 rounded-xl bg-white">
+            <div className="opacity-0 flex items-start gap-4 p-4 border border-zinc-200 rounded-xl bg-white">
               <div className="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center">
                 <Share2 className="w-5 h-5 text-indigo-600" />
               </div>

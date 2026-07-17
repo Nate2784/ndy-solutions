@@ -66,7 +66,7 @@ export default function ContactForm() {
         setIsSubmitting(true);
         const result = await sendEmail(formData);
         if (result.success) {
-          setModal({ isOpen: true, title: "DISPATCH SUCCESSFUL", message: "Your message has been routed to our specialist.", isError: false });
+          setModal({ isOpen: true, title: "DISPATCH SUCCESSFUL", message: "Your message has been routed to our specialist. They'll reach out to you as soon as humanly possible :D", isError: false });
           setFormData({ name: "", email: "", phone: "", message: "", subject: "consultation", honeypot: "" });
           setTouched({});
         } else {
@@ -91,7 +91,7 @@ export default function ContactForm() {
         {/* Name & Email Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-1">
-            <label className="font-mono text-[10px] font-black uppercase text-zinc-700">Your Name *</label>
+            <label className="font-mono text-[10px] font-black uppercase text-zinc-700">Your Full Name *</label>
             <input type="text" placeholder="Natnael Dagnachew" value={formData.name} 
               onBlur={() => handleBlur('name')}
               onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -127,7 +127,7 @@ export default function ContactForm() {
             />
             {/* Displaying country calling code seamlessly right next to the native flag element container layout */}
             {currentCountry && (
-              <span className="absolute left-[54px] top-1/2 -translate-y-1/2 pointer-events-none font-mono text-xs font-semibold text-zinc-500 select-none z-10">
+              <span className="absolute left-13.5 top-1/2 -translate-y-1/2 pointer-events-none font-mono text-xs font-semibold text-zinc-500 select-none z-10">
                 +{getCountryCallingCode(currentCountry)}
               </span>
             )}
@@ -142,7 +142,7 @@ export default function ContactForm() {
               <option value="consultation">Architectural Consultation</option>
               <option value="platform">Platform Development</option>
               <option value="static-site">Company Profile / Static Website</option>
-              <option value="static-site">Other</option>
+              <option value="Other/Custom">Other</option>
             </select>
           </div>
         </div>

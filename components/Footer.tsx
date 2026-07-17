@@ -76,7 +76,7 @@ export default function Footer() {
         <div className="mt-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-left">
           
           {/* Horizontal Social Index */}
-          <div className="flex flex-wrap items-start justify-start gap-x-6 gap-y-2 font-mono text-[10px] tracking-widest uppercase">
+          <div className="opacity-0 flex flex-wrap items-start justify-start gap-x-6 gap-y-2 font-mono text-[10px] tracking-widest uppercase">
             <span className="text-zinc-400 font-bold">NETWORKS:</span>
             <a href="#" target="_blank" rel="noopener noreferrer" className="text-zinc-950 font-black hover:text-cyan-500 transition-colors">
               [ GitHub ]
@@ -91,7 +91,7 @@ export default function Footer() {
 
           {/* Legal Stamp */}
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400">
-            © {new Date().getFullYear()} <span className="text-zinc-950 font-black">NDY TECH SOLUTIONS LLC</span>. All rights reserved globally.
+            © {new Date().getFullYear()} <span className="text-zinc-950 font-black">NDY TECH SOLUTIONS LLC</span>. All rights reserved.
           </p>
           
         </div>
