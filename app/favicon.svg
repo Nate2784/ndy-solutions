@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <!-- Background rect removed for transparent canvas profile -->
+  
+  <!-- Centered Brand Monogram -->
+  <text 
+    x="250" 
+    y="330" 
+    font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" 
+    font-size="240" 
+    font-weight="900" 
+    fill="#4fa8d1" 
+    letter-spacing="-0.05em"
+    text-anchor="middle"
+  >NDY</text>
+</svg>

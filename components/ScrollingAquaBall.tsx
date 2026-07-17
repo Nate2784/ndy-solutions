@@ -83,7 +83,7 @@ export default function ScrollingAquaBall() {
     <>
       {/* ================= DESKTOP LAYOUT (Left Side Margin Gutter) ================= */}
       {/* Elevated to z-100 to consistently float cleanly above layout background/footers */}
-      <div className="fixed left-6 top-0 h-screen w-12 hidden xl:flex flex-col items-center justify-center pointer-events-none z-100">
+      <div className="notranslate fixed left-6 top-0 h-screen w-12 hidden xl:flex flex-col items-center justify-center pointer-events-none z-100">
         <div className="relative flex flex-col justify-between py-8 items-center h-[50vh] w-full bg-white/40 border border-zinc-200/50 backdrop-blur-md rounded-full pointer-events-auto shadow-sm">
           <div className="absolute top-10 bottom-10 w-0.5 border-l-2 border-dashed border-zinc-200 -z-10" />
 
@@ -140,7 +140,7 @@ export default function ScrollingAquaBall() {
             transition={{ duration: 0.2 }}
             className="fixed top-20 inset-x-0 flex justify-center xl:hidden z-100 px-4 pointer-events-none"
           >
-            <div className="relative flex items-center justify-between w-full max-w-md bg-white/90 border border-zinc-200/80 backdrop-blur-md py-2.5 pl-4 pr-2 rounded-xl pointer-events-auto shadow-md">
+            <div className="notranslate relative flex items-center justify-between w-full max-w-md bg-white/90 border border-zinc-200/80 backdrop-blur-md py-2.5 pl-4 pr-2 rounded-xl pointer-events-auto shadow-md">
               
               {/* Mobile navigational options container */}
               <div className="relative flex items-center justify-around flex-1 mr-2">
