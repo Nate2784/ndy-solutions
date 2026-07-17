@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Layout, Laptop, Shield, Check, Mail, MessageCircle, Share2 } from 'lucide-react';
 import PricingSection from '@/components/PricingSection';
@@ -11,8 +11,8 @@ export default function NdySolutionsHome() {
 
   const pricingData = [
     { title: "Profile Page", price: "$89.99", unit: "Flat Rate", desc: "Single page professional company profile." },
-    { title: "Multi-Page", price: "$67.99", unit: "Per Page", desc: "Scalable websites with custom sub-pages." },
-    { title: "Software", price: "Custom", unit: "Estimate", desc: "Cloud tools & complex ecosystems." },
+    { title: "Multi-Page", price: "$49.99", unit: "Per Page", desc: "Scalable websites with custom sub-pages." },
+    { title: "Software", price: "Custom", unit: "Estimate", desc: "Erp, Cloud tools & complex ecosystems." },
   ];
 
   // FIX: Explicitly typed as Variants to satisfy the AnimationGeneratorType requirement
@@ -152,6 +152,7 @@ export default function NdySolutionsHome() {
 </motion.section>
 
 {/* ================= SECTION 2: ANIMATED VALUE PROPOSITION ================= */}
+
 <PricingSection />
 
 {/* ================= SECTION 3: WHAT WE DO (HIGH-POP ELECTRIC AQUA MATRIX) ================= */}

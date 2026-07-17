@@ -10,11 +10,26 @@ export async function sendEmail(formData: {
   phone: string;
   subject: string;
   message: string;
+  honeypot?: string; // Hidden anti-spam tracker
 }) {
   try {
+    // 🛑 SPAM GUARD: Automated bots fill out all available fields.
+    // Real human users cannot see or interact with this field.
+    if (formData.honeypot && formData.honeypot.trim() !== "") {
+      console.warn(`[Spam Blocked]: Request from ${formData.email} intercepted via honeypot.`);
+      return { success: true }; // Return true silently so the bot thinks it succeeded
+    }
+
+    const receiverEmail = process.env.NOTIFICATION_RECEIVER_EMAIL;
+    
+    if (!receiverEmail) {
+      console.error("Missing NOTIFICATION_RECEIVER_EMAIL environment variable.");
+      return { success: false };
+    }
+
     const { error } = await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: "",
+      to: receiverEmail,
       subject: `✨ New ${formData.subject.toUpperCase()} Inquiry: ${formData.name}`,
       replyTo: formData.email,
       html: `
@@ -67,9 +82,14 @@ export async function sendEmail(formData: {
       `,
     });
 
-    if (error) return { success: false };
+    if (error) {
+      console.error("Resend API Error:", error);
+      return { success: false };
+    }
+    
     return { success: true };
   } catch (err) {
+    console.error("Server Action Exception:", err);
     return { success: false };
   }
 }

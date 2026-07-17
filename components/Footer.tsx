@@ -1,7 +1,5 @@
 "use client";
 
-import React from 'react';
-
 export default function Footer() {
   return (
     <footer className="relative z-50 border-t-2 border-zinc-950 bg-linear-to-tr from-zinc-50 via-white to-cyan-500/10 backdrop-blur-md">

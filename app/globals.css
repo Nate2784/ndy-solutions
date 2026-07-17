@@ -61,3 +61,28 @@ html {
 .skiptranslate {
   display: none !important;
 }
+
+/* Hide Google Translate native UI globally */
+.skiptranslate, 
+.goog-te-banner-frame, 
+.goog-te-banner-frame\.v2, 
+.goog-te-banner,
+#goog-gt-tt, 
+.goog-te-balloon-frame {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0px !important;
+  width: 0px !important;
+}
+html, body {
+  top: 0px !important;
+  position: static !important;
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+.goog-text-highlight {
+  background: transparent !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+}

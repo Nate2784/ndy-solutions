@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function PricingSection() {
@@ -9,7 +9,7 @@ export default function PricingSection() {
   const pricingData = [
     { title: "Profile", price: "$94.99", unit: "Flat Rate", desc: "Single page professional company profile." },
     { title: "Multi-Page", price: "$67.99", unit: "Per Page", desc: "Scalable websites with custom sub-pages." },
-    { title: "WEb-apps", price: "Custom", unit: "Estimate", desc: "Multi functional websites, Cloud tools & complex ecosystems." },
+    { title: "Software", price: "Custom", unit: "Estimate", desc: "ERP sys, Multi functional websites, Cloud tools & complex ecosystems." },
   ];
 
   return (
@@ -18,6 +18,7 @@ export default function PricingSection() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       className="relative z-10 py-24 border-b-2 border-zinc-950 overflow-hidden"
+      id="pricing"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">

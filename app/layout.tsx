@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer"; // Imported Component
 import ScrollToTop from "@/components/ScrollToTop";
-
+import ScrollingAquaBall from '@/components/ScrollingAquaBall';
 import "./globals.css";
 
 
@@ -62,14 +62,19 @@ export default function RootLayout({
 
         {/* Sticky Modular Header */}
         <Header />
+        
 
         {/* Dynamic Inner Page Slots */}
+        
         <main className="flex-auto relative z-20 max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-24">
+          
           {children}
         </main>
 
         {/* Layout-Aligned Go To Top Button */}
         <ScrollToTop />
+        
+        <ScrollingAquaBall />
 
         {/* Separated Lavish Footer */}
         <Footer />

@@ -11,7 +11,6 @@ declare global {
   }
 }
 
-// Removed Afaan Oromoo - exclusively English and Amharic remains
 const languages = [
   { code: "en", name: "English", label: "EN" },
   { code: "am", name: "አማርኛ", label: "አማ" },
@@ -25,6 +24,7 @@ export default function LanguageSelector() {
   
   const dropdownRef = useRef<HTMLDivElement>(null);
   const initializingRef = useRef(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -34,7 +34,10 @@ export default function LanguageSelector() {
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
   }, []);
 
   // Structural Google Widget setup execution definition
@@ -136,7 +139,7 @@ export default function LanguageSelector() {
         }
       } else if (attempts < 20) {
         attempts++;
-        setTimeout(triggerTranslation, 100);
+        timeoutRef.current = setTimeout(triggerTranslation, 100);
       } else {
         resetToEnglishFallback();
       }
@@ -155,35 +158,9 @@ export default function LanguageSelector() {
     <div ref={dropdownRef} className="relative inline-block text-left z-50 notranslate" translate="no">
       <div id="google_translate_element" className="hidden" />
 
-      {/* NUCLEAR STYLING LAYER: Forcefully destroys all Google native elements */}
-      <style jsx global>{`
-        .skiptranslate, 
-        .goog-te-banner-frame, 
-        .goog-te-banner-frame\.v2, 
-        .goog-te-banner,
-        #goog-gt-tt, 
-        .goog-te-balloon-frame {
-          display: none !important;
-          visibility: hidden !important;
-          opacity: 0 !important;
-          height: 0px !important;
-          width: 0px !important;
-        }
-        html, body {
-          top: 0px !important;
-          position: static !important;
-          margin-top: 0px !important;
-          padding-top: 0px !important;
-        }
-        .goog-text-highlight {
-          background: transparent !important;
-          box-shadow: none !important;
-          box-sizing: border-box !important;
-        }
-      `}</style>
-
       {/* Responsive Trigger Button - Tuned to your Aqua & Zinc theme */}
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-1 md:gap-1.5 px-2.5 py-1.5 md:px-3 rounded-full border border-zinc-200 bg-zinc-100 text-zinc-950 hover:border-cyan-500 hover:text-cyan-500 transition-all duration-300 group cursor-pointer shadow-inner"
       >
@@ -250,7 +227,7 @@ export default function LanguageSelector() {
             exit={{ opacity: 0, y: 15, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
             onAnimationComplete={() => {
-              setTimeout(() => setShowToast(false), 3500);
+              timeoutRef.current = setTimeout(() => setShowToast(false), 3500);
             }}
             className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 notranslate pointer-events-none"
           >

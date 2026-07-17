@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import  { useState, useEffect, useRef } from 'react';
 import { motion, Variants, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, ShieldCheck, Zap, Globe, Sparkles, Play, Power } from 'lucide-react';
 

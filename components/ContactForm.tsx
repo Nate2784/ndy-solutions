@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, AlertCircle, CheckCircle, Loader2, ShieldCheck, XCircle } from "lucide-react";
-import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import PhoneInput, { isValidPhoneNumber, getCountryCallingCode } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { sendEmail } from "@/app/actions/sendEmail";
 
@@ -11,6 +11,9 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "", subject: "consultation" });
   
+  // Track the currently selected country code dynamically to show it next to the flag
+  const [currentCountry, setCurrentCountry] = useState<any>("ET");
+
   // Track touched fields to avoid showing errors before user interacts
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -98,9 +101,16 @@ export default function ContactForm() {
             defaultCountry="ET" 
             value={formData.phone} 
             onBlur={() => handleBlur('phone')}
+            onCountryChange={(country) => setCurrentCountry(country)}
             onChange={(val) => setFormData({...formData, phone: val || ""})} 
-            className="px-4 py-3 [&_.PhoneInputCountry]:flex [&_.PhoneInputCountry]:items-center [&_.PhoneInputCountry]:pr-4 [&_.PhoneInputCountry]:border-r [&_.PhoneInputCountry]:border-zinc-300 [&_.PhoneInputCountry]:mr-4 [&_.PhoneInputCountry]:scale-105 [&_.PhoneInputCountrySelect]:cursor-pointer" 
+            className="px-4 py-3 [&_.PhoneInputCountry]:flex [&_.PhoneInputCountry]:items-center [&_.PhoneInputCountry]:mr-2 [&_.PhoneInputCountry]:scale-105 [&_.PhoneInputCountrySelect]:cursor-pointer [&_.PhoneInputInput]:bg-transparent [&_.PhoneInputInput]:outline-none [&_.PhoneInputCountrySelectArrow]:ml-1 [&_.PhoneInputInput]:pl-12" 
             />
+            {/* Displaying country calling code seamlessly right next to the native flag element container layout */}
+            {currentCountry && (
+              <span className="absolute left-[54px] top-1/2 -translate-y-1/2 pointer-events-none font-mono text-xs font-semibold text-zinc-500 select-none z-10">
+                +{getCountryCallingCode(currentCountry)}
+              </span>
+            )}
         </div>
         
         {errors.phone && <p className="text-red-500 text-[9px] font-mono flex items-center gap-1"><XCircle size={10}/> {errors.phone}</p>}
@@ -112,6 +122,7 @@ export default function ContactForm() {
               <option value="consultation">Architectural Consultation</option>
               <option value="platform">Platform Development</option>
               <option value="static-site">Company Profile / Static Website</option>
+              <option value="static-site">Other</option>
             </select>
           </div>
         </div>
