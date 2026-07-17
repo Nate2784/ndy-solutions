@@ -1,8 +1,18 @@
 "use server";
 
 import { Resend } from "resend";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
+import { headers } from "next/headers";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+// 1. Initialize Upstash Redis Rate Limiter outside the handler function
+// This safely persists connection states across serverless execution environments
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(), // Automatically looks for UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN in your .env
+  limiter: Ratelimit.slidingWindow(3, "60 s"), // Max 3 message dispatches per minute per IP
+});
 
 export async function sendEmail(formData: {
   name: string;
@@ -10,23 +20,36 @@ export async function sendEmail(formData: {
   phone: string;
   subject: string;
   message: string;
-  honeypot?: string; // Hidden anti-spam tracker
+  honeypot?: string;
 }) {
   try {
-    // 🛑 SPAM GUARD: Automated bots fill out all available fields.
-    // Real human users cannot see or interact with this field.
+    // 2. Extract Client IP and run Rate Limit check instantly before processing anything else
+    const headerList = await headers();
+    const ip = headerList.get("x-forwarded-for")?.split(",")[0] || "127.0.0.1";
+    
+    const { success } = await ratelimit.limit(ip);
+
+    if (!success) {
+      console.warn(`[Upstash Rate Limited]: Blocked spam traffic from IP: ${ip}`);
+      return { 
+        success: false, 
+        message: "Too many requests. Please wait before trying again." 
+      };
+    }
+
+    // 3. SPAM GUARD: Intercept automated scraper bots
     if (formData.honeypot && formData.honeypot.trim() !== "") {
-      console.warn(`[Spam Blocked]: Request from ${formData.email} intercepted via honeypot.`);
-      return { success: true }; // Return true silently so the bot thinks it succeeded
+      console.warn(`[Honeypot Blocked]: Request from ${formData.email} dropped.`);
+      return { success: true }; // Fake success message to fool the automated bot script
     }
 
     const receiverEmail = process.env.NOTIFICATION_RECEIVER_EMAIL;
-    
     if (!receiverEmail) {
       console.error("Missing NOTIFICATION_RECEIVER_EMAIL environment variable.");
       return { success: false };
     }
 
+    // 4. DISPATCH VIA RESEND
     const { error } = await resend.emails.send({
       from: "onboarding@resend.dev",
       to: receiverEmail,

@@ -9,7 +9,14 @@ import { sendEmail } from "@/app/actions/sendEmail";
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "", subject: "consultation" });
+  const [formData, setFormData] = useState({ 
+    name: "", 
+    email: "", 
+    phone: "", 
+    message: "", 
+    subject: "consultation",
+    honeypot: "" // Tracks hidden automated bot field entries
+  });
   
   // Track the currently selected country code dynamically to show it next to the flag
   const [currentCountry, setCurrentCountry] = useState<any>("ET");
@@ -60,13 +67,26 @@ export default function ContactForm() {
         const result = await sendEmail(formData);
         if (result.success) {
           setModal({ isOpen: true, title: "DISPATCH SUCCESSFUL", message: "Your message has been routed to our specialist.", isError: false });
-          setFormData({ name: "", email: "", phone: "", message: "", subject: "consultation" });
+          setFormData({ name: "", email: "", phone: "", message: "", subject: "consultation", honeypot: "" });
           setTouched({});
         } else {
           setModal({ isOpen: true, title: "SYSTEM ERROR", message: "Dispatch failed. Please check your data or try again.", isError: true });
         }
         setIsSubmitting(false);
       }}>
+        
+        {/* Honeypot Field - Visually invisible to humans, trap for automated scrapers */}
+        <div className="opacity-0 absolute -z-50 pointer-events-none h-0 w-0 overflow-hidden" aria-hidden="true">
+          <label className="font-mono text-[10px]">Leave this field completely blank</label>
+          <input
+            type="text"
+            name="fax_number_confirmation"
+            tabIndex={-1}
+            autoComplete="off"
+            value={formData.honeypot}
+            onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+          />
+        </div>
         
         {/* Name & Email Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -144,7 +164,7 @@ export default function ContactForm() {
 
         <button disabled={!isFormValid || isSubmitting} type="submit"
           className="w-full py-4 bg-zinc-950 text-white font-mono text-xs font-black uppercase rounded-xl disabled:opacity-30 hover:bg-cyan-600 transition-all flex items-center justify-center gap-2">
-          {isSubmitting ? <Loader2 className="animate-spin" /> : <>DISPATCH MESSAGE <ArrowUpRight className="w-4 h-4" /></>}
+          {isSubmitting ? <Loader2 className="animate-spin" /> : <>SEND MESSAGE <ArrowUpRight className="w-4 h-4" /></>}
         </button>
       </form>
 
