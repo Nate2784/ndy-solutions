@@ -153,10 +153,10 @@ export default function ScrollingAquaBall() {
                       onClick={() => scrollToSection(sec.id)}
                       className="relative flex flex-col items-center justify-center py-1 flex-1 text-center focus:outline-hidden cursor-pointer"
                     >
-                      <span className={`font-mono text-[9px] font-black tracking-wider uppercase transition-all duration-300
+                      <span className={`font-mono text-[8px] font-black tracking-wider uppercase transition-all duration-300
                         ${isActive ? "text-cyan-600 scale-105" : "text-zinc-400"}
                       `}>
-                        {sec.label.slice(0, 4)}
+                        {sec.label}
                       </span>
                     </button>
                   );
